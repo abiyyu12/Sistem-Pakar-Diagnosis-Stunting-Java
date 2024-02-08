@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th = "https://www.thymeleaf.org/">
+<head th:replace = "~{fragments::header}">
+<body>
+    <section th:replace="~{fragments::navbar}"></section>
+    <!-- Content -->
+    <div class="container" style="margin-top: 5rem; color: white">
+      <button
+        type="button"
+        class="btn btn-primary mb-3"
+        data-bs-toggle="modal"
+        data-bs-target="#exampleModal"
+      >
+        LAKUKAN DIAGNOSIS
+      </button>
+      <div th:if="${noDg}" class="text-center" style="margin-bottom: 150px">
+        <h5 th:text="${noDg}" style="color: gray; font-size: 25px" class="mt-5"></h5>
+      </div>
+      <div class="row" th:unless="${noDg}">
+        <div class="col-lg-4" th:each="dg : ${diagnosis}">
+          <div class="card card-margin">
+            <div class="card-header no-border">
+              <h5 class="card-title">DIAGNOSIS</h5>
+            </div>
+            <div class="card-body pt-0">
+              <div class="widget-49">
+                <div class="widget-49-title-wrapper">
+                  <div class="widget-49-date-primary">
+                    <span class="widget-49-date-day" th:text="${#temporals.format(dg.createdAt, 'dd')}"></span>
+                    <span class="widget-49-date-month" th:text="${#temporals.monthNameShort(dg.createdAt)}"></span>
+                  </div>
+                  <div class="widget-49-meeting-info">
+                    <span class="widget-49-pro-title" th:text="'An : ' + ${dg.pasiens.fullName}"></span>
+                    <span class="widget-49-meeting-time" th:text="${#temporals.format(dg.createdAt, 'HH:mm')}"></span>
+                  </div>
+                </div>
+                <ol class="widget-49-meeting-points mt-3">
+                  <li class="widget-49-meeting-item" th:each="dtg : ${dg.detailDiagnoses}">
+                    <span th:text="${dtg.penyakit.namaPenyakit} + ' ' + ${dtg.hasilDiagnosis} + '%'"></span>
+                  </li>
+                </ol>
+                <div class="widget-49-meeting-action">
+                  <a th:href="@{'/detail?id=' + ${dg.id}}" class="btn btn-sm btn-flash-border-primary">View All</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <nav th:unless="${noDg}" aria-label="...">
+        <ul class="pagination" >
+          <li th:if= "${currentPage != 0}" class="page-item ">
+            <a th:href = "@{'/diagnosis?page=' + ${currentPage - 1}}" class="page-link">Previous</a>
+          </li >
+          <li th:each = "i : ${#numbers.sequence(1, totalPages)}" th:classappend = "${currentPage == i - 1 ? 'active' : ''}" class="page-item">
+            <a th:href = "@{'/diagnosis?page=' + ${i - 1}}" class="page-link"><span th:text = "${i}"></span></a>
+          </li>
+
+          <li th:if = "${currentPage + 1 != totalPages}" class="page-item">
+            <a th:href = "@{'/diagnosis?page=' + ${currentPage + 1}}" class="page-link">Next</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+    <section th:replace="~{fragments::footer}"></section>
+    <div th:replace="~{fragments::js}"></div>
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="exampleModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-lg">
+        <form th:action="@{/diagnosis}" method="post">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">
+              DIAGNOSIS PENYAKIT STUNTING
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <div class="card-header">
+              Ceklis Gejala Gejala yang anda rasakan.
+            </div>
+              <ul class="form-check list-group list-group-flush" th:each="gj : ${gejala}">
+                <li class="list-group-item">
+                  [[${gj.namaGejala}]]
+                  <label class="checkbox form-check-label">
+                    <input class="form-check-input" type="checkbox" name="gejalaListCheck" th:value="${gj.id}" />
+                    <span class="danger"></span>
+                  </label>
+                </li>
+              </ul>
+
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+            <button type="submit" class="btn btn-primary">Kirim</button>
+          </div>
+        </div>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

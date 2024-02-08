@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th = "https://www.thymeleaf.org/">
+<head th:replace = "~{fragments::header}">
+<body>
+<div id="app">
+    <div class="main-wrapper">
+        <div class="navbar-bg"></div>
+        <nav th:replace="~{fragments::navbar}"></nav>
+        <div th:replace="~{fragments::sidebar}"></div>
+        <div class="main-content">
+            <section class="section">
+                <div class="section-header">
+                    <div class="section-header-back">
+                        <a tH:href="@{/penyakit}" class="btn"><i class="fa fa-arrow-left"></i></a>
+                    </div>
+                    <h1>Update Penyakit</h1>
+                </div>
+                <div th:if="${errors}" class="alert alert-danger alert-dismissible show fade">
+                    <div class="alert-body">
+                        <button class="close" data-dismiss="alert">X</button>
+                        <b>Errors ! </b>
+                        <p th:text="${errors}"></p>
+                    </div>
+                </div>
+                <div class="section-body">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>Update Penyakit</h4>
+                        </div>
+                        <div class="card-body col-md-8">
+                            <form id="formsPenyakit" th:action="@{/penyakit/update}" enctype="multipart/form-data" method="post" autocomplete="off" th:object="${penyakitDto}">
+                                <input type="hidden" name="idPenyakit" th:field="*{idPenyakit}" th:value="*{idPenyakit}" />
+                                <div class="form-group">
+                                    <label>Nama Penyakit</label>
+                                    <input th:field="*{namaPenyakit}" type="text" name="name" class="form-control" th:classappend="${#fields.hasErrors('namaPenyakit')} ? 'is-invalid' : ''" autofocus/>
+                                    <div class="invalid-feedback"  th:errors ="*{namaPenyakit}">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Gambar Penyakit</label>
+                                    <center>
+                                        <img class = "my-product-image" style="width: 250px;" id="gambarPenyakit"
+                                             th:src="'data:image/jpeg;base64,' + *{gambarPenyakit}">
+                                    </center>
+                                    <input type="file" id="inputGambar" name="pictures" accept="image/png, image/jpeg" class="form-control" autofocus>
+                                </div>
+                                <div class="form-group">
+                                    <label>Keterangan</label>
+                                    <textarea  th:field="*{keterangan}" name="keterangan" class="form-control" th:classappend="${#fields.hasErrors('keterangan')} ? 'is-invalid' : ''" autofocus></textarea>
+                                    <div class="invalid-feedback"  th:errors ="*{keterangan}">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Solusi</label>
+                                    <textarea  th:field="*{solusi}" name="solusi" class="form-control" th:classappend="${#fields.hasErrors('solusi')} ? 'is-invalid' : ''" autofocus></textarea>
+                                    <div class="invalid-feedback"  th:errors ="*{solusi}">
+                                    </div>
+                                </div>
+                                <div class="form-group mb-2" th:each="gjl : ${penyakitDto.gejalaList}">
+                                    <div class="form-group" id="gejalaInput">
+                                        <label>Gejala</label>
+                                        <select class="form-control" name="gejalaList">
+                                            <option th:each="gj : ${gejala}"
+                                                    th:text="${gj.namaGejala}"
+                                                    th:value="${gj.id}"
+                                                    th:selected="${gj.id == gjl.id}"
+                                            >
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div>
+                                    <button type="submit" class="btn btn-success"><i class="fas fa-paper-plane"> Simpan</i></button>
+                                    <button type="reset" class="btn btn-secondary"> Reset</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <footer th:replace="~{fragments::footer}"></footer>
+    </div>
+</div>
+<div th:replace="~{fragments::js}">
+</div>
+<script>
+  const inputImage = document.getElementById('inputGambar');
+  let gambarPenyakit = document.getElementById('gambarPenyakit');
+  inputImage.onchange = function () {
+    gambarPenyakit.src = URL.createObjectURL(inputImage.files[0]);
+  }
+</script>
+</body>
+</html>

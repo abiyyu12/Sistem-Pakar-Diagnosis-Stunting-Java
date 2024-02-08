@@ -1,0 +1,73 @@
+<html lang="en" xmlns:th = "https://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
+    <title>Internal Server Error</title>
+    <title th:text="${title}"></title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <!-- CSS Libraries -->
+    <link rel="stylesheet" th:href="@{/stisla-master/node_modules/bootstrap/dist/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/stisla-master/node_modules/@fortawesome/fontawesome-free/css/all.css}">
+    <link rel="stylesheet" th:href="@{/stisla-master/node_modules/bootstrap-social/bootstrap-social.css}">
+    <link rel="stylesheet" th:href="@{/stisla-master/assets/css/style.css}">
+    <link rel="stylesheet" th:href="@{/stisla-master/assets/css/components.css}">
+</head>
+<body>
+
+<div id="app">
+    <section class="section">
+        <div class="container mt-5">
+            <div class="page-error">
+                <div class="page-inner">
+                    <h1>500</h1>
+                    <div class="page-description">
+                        Sorry,The Server Has Encountered An Error
+                    </div>
+                    <div class="page-search">
+                        <!--                        <form>-->
+                        <!--                            <div class="form-group floating-addon floating-addon-not-append">-->
+                        <!--                                <div class="input-group">-->
+                        <!--                                    <div class="input-group-prepend">-->
+                        <!--                                        <div class="input-group-text">-->
+                        <!--                                            <i class="fas fa-search"></i>-->
+                        <!--                                        </div>-->
+                        <!--                                    </div>-->
+                        <!--                                    <input type="text" class="form-control" placeholder="Search">-->
+                        <!--                                    <div class="input-group-append">-->
+                        <!--                                        <button class="btn btn-primary btn-lg">-->
+                        <!--                                            Search-->
+                        <!--                                        </button>-->
+                        <!--                                    </div>-->
+                        <!--                                </div>-->
+                        <!--                            </div>-->
+                        <!--                        </form>-->
+                        <div class="mt-3">
+                            <a th:href="@{/home}">Back to Home</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="simple-footer mt-5">
+                Copyright &copy; Stisla 2018
+            </div>
+        </div>
+    </section>
+</div>
+<script th:src="@{/stisla-master/node_modules/jquery/dist/jquery.min.js}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script th:src="@{/stisla-master/node_modules/bootstrap/dist/js/bootstrap.min.js}"></script>
+<script th:src="@{/stisla-master/node_modules/jquery.nicescroll/dist/jquery.nicescroll.min.js}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+<script th:src="@{/stisla-master/assets/js/stisla.js}"></script>
+<script th:src="@{/stisla-master/node_modules/datatables/media/js/jquery.dataTables.min.js}"></script>
+<script th:src="@{/stisla-master/node_modules/datatables.net-bs4/js/dataTables.bootstrap4.min.js}"></script>
+
+<script th:src="@{/stisla-master/node_modules/chart.js/dist/Chart.min.js}"></script>
+<!-- JS Libraies -->
+
+<!-- Template JS File -->
+<script th:src="@{/stisla-master/assets/js/scripts.js}"></script>
+<script th:src="@{/stisla-master/assets/js/custom.js}"></script>
+</body>
+</html>

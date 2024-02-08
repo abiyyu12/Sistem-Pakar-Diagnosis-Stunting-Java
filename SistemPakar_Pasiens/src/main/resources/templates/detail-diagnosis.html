@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th = "https://www.thymeleaf.org/">
+<head th:replace = "~{fragments::header}">
+<body>
+<section th:replace="~{fragments::navbar}"></section>
+<!-- Content -->
+    <div class="container mt-5 mb-5">
+      <div class="card">
+        <div class="card-body">
+          <div class="container mb-5 mt-3">
+            <div class="row d-flex align-items-baseline">
+              <div class="col-xl-9">
+                <p style="color: #7e8d9f; font-size: 20px">
+                  DIAGNOSIS >> <strong>[[${diagnosis.id}]]</strong>
+                </p>
+              </div>
+              <div class="col-xl-3 float-end">
+                <a
+                        th:href="@{'/print?id='+${id}}"
+                  class="btn btn-light text-capitalize border-0"
+                  data-mdb-ripple-color="dark"
+                  ><i class="fas fa-print text-primary"></i> Print</a
+                >
+              </div>
+              <hr />
+            </div>
+
+            <div class="container">
+              <div class="col-md-12">
+                <div class="text-center">
+                  <img
+                    th:src="@{/image/logo-bina-insani-2.png}"
+                    width="250"
+                    alt="No Image"
+                  />
+                  <p class="pt-0">Stunting.Bina-Insani.com</p>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xl-8">
+                  <ul class="list-unstyled">
+                    <li class="text-muted">
+                      To: <span style="color: #5d9fc5">[[${diagnosis.pasiens.fullName}]]</span>
+                    </li>
+                    <li class="text-muted">[[${diagnosis.pasiens.address}]]</li>
+                    <li class="text-muted">
+                      <i class="fas fa-phone"></i> [[${diagnosis.pasiens.phone}]]
+                    </li>
+                  </ul>
+                </div>
+                <div class="col-xl-4">
+                  <p class="text-muted">DIAGNOSIS</p>
+                  <ul class="list-unstyled">
+                    <li class="text-muted">
+                      <i class="fas fa-circle" style="color: #84b0ca"></i>
+                      <span class="fw-bold">DIAGNOSIS Tanggal</span>
+                      <p th:text="${#temporals.format(diagnosis.createdAt, 'dd-MM-yyyy HH:mm')}">
+                      </p>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="row my-2 mx-1 justify-content-center">
+                <canvas id="myChart"></canvas>
+              </div>
+              <p class="ms-2 mt-5" style="font-size: 18px">
+                Berdasarkan hasil DIAGNOSIS diatas anda [[${boboBesar}]] % terkena Penyakit [[${penyakit.namaPenyakit}]]
+              </p>
+              <p class="ms-2" style="font-size: 15px; text-align: justify" >
+                [[${penyakit.keterangan}]]
+              </p>
+              <p class="ms-2" style="font-size: 15px; text-align: justify">
+                Gejala penyakit Ini Berupa :
+              </p>
+              <ol class="ms-2" style="font-size: 15px; text-align: justify">
+                <li th:each="gjl : ${penyakit.gejala}">
+                  [[${gjl.namaGejala}]]
+                </li>
+              </ol>
+              <p class="ms-2 mt-2" style="font-size: 18px">
+                Solusi untuk masalah [[${penyakit.namaPenyakit}]]
+              </p>
+              <p class="ms-2 mb-2" style="font-size: 15px; text-align: justify">
+                [[${penyakit.solusi}]]
+              </p>
+              <hr />
+              <div class="row">
+                <div class="col-xl-2">
+                  <a
+                    th:href="@{/diagnosis?page=0}"
+                    class="btn btn-primary text-capitalize"
+                    style="background-color: #60bdf3"
+                  >
+                    <i class="fas fa-arrow-left"></i> Kembali
+                  </a>
+                </div>
+                <div class="col-xl-10"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <section th:replace="~{fragments::footer}"></section>
+    <div th:replace="~{fragments::js}"></div>
+    <script th:inline="javascript">
+      const ctx = document.getElementById("myChart");
+      new Chart(ctx, {
+        type: "pie",
+        data: {
+          labels: [[${penyakitList}]],
+          datasets: [
+            {
+              label: " # Total Bobot",
+              data: [[${bobotList}]],
+              borderWidth: 1,
+            },
+          ],
+        },
+        options: {
+          title: {
+            display: true,
+            text: "Expense Categories",
+          },
+          aspectRatio: 2.5,
+        },
+      });
+    </script>
+  </body>
+</html>

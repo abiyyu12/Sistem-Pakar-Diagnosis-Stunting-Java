@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th = "https://www.thymeleaf.org/">
+<head th:fragment="header">
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
+    <title th:text="${title}"></title>
+    <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+            crossorigin="anonymous"
+    />
+    <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+    />
+    <link rel="stylesheet" th:href="@{style/custom.css}" />
+</head>
+<body>
+<section id="nav-bar" th:fragment="navbar">
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#"
+            ><img th:src="@{/image/logo-bina-insani-2.png}" alt="Logo"
+            /></a>
+            <button
+                    class="navbar-toggler"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarNavAltMarkup"
+                    aria-controls="navbarNavAltMarkup"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation"
+            >
+                <i class="fa-solid fa-list"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav ms-auto">
+                    <a class="nav-link" th:href="@{/home}">HOME</a>
+                    <a class="nav-link" th:href="@{/home}">ABOUT US</a>
+                    <a class="nav-link" th:href="@{/home}">STUNTING</a>
+                    <a class="nav-link" th:href="@{/penyakit}">PENYAKIT</a>
+                    <a th:if="${session.username}" class="nav-link" th:href="@{/diagnosis?page=0}">DIAGNOSIS</a>
+                    <a th:unless="${session.username}" class="nav-link" th:href="@{/login}">LOGIN</a>
+                    <a th:if="${session.username}" class="nav-link" th:href="@{/logout}">LOGOUT</a>
+                    <a th:if="${session.username}" class="nav-link" th:href="@{/profile}">PROFILE</a>
+                    <a class="nav-link" th:href="@{/home}">CONTACT</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+</section>
+<section id="footer" th:fragment="footer">
+    <img th:src="@{image/wave2.png}" class="footer-img" />
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <img th:src="@{/image/logo-bina-insani-2.png}" class="img-fluid"/>
+            </div>
+            <div class="col-md-6 footer-box">
+                <p><b>CONTACT US</b></p>
+                <p><i class="fa-solid fa-location-pin"></i> Jln. Raya Siliwangi No. 6 Rawa Panjang Kota Bekasi</p>
+                <p><i class="fa-solid fa-phone"></i>021 82436886 / 021 82436996</p>
+                <p><i class="fa-solid fa-envelope"></i>info@binainsani.ac.id</p>
+            </div>
+        </div>
+        <hr />
+        <p class="copyright">Website Crafted &copy; Abiyyu Zaky Arinta Putra</p>
+    </div>
+</section>
+
+<div th:fragment="js">
+    <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+            crossorigin="anonymous"
+    ></script>
+<!--    <script-->
+<!--            src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"-->
+<!--            integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"-->
+<!--            crossorigin="anonymous"-->
+<!--    ></script>-->
+<!--    <script-->
+<!--            src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"-->
+<!--            integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"-->
+<!--            crossorigin="anonymous"-->
+<!--    ></script>-->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</div>
+</body>
+</html>

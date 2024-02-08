@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th = "https://www.thymeleaf.org/">
+<head th:replace = "~{fragments::header}">
+<body>
+<section th:replace="~{fragments::navbar}"></section>
+<section id="about-us">
+    <div class="container">
+        <h1 class="title text-center">Penyakit Stunting</h1>
+        <div th:each="pyk,status : ${penyakit}" class="accordion" id="accordionPanelsStayOpenExample">
+            <div class="accordion-item mb-3">
+                <h2 class="accordion-header" th:id="'panelsStayOpen-heading'+${status.count}">
+                    <button
+                            class="accordion-button collapsed"
+                            type="button"
+                            data-bs-toggle="collapse"
+                            th:data-bs-target="'#panelsStayOpen-collapse'+${status.count}"
+                            aria-expanded="false"
+                            th:aria-controls="'panelsStayOpen-collapse'+${status.count}"
+                    >
+                        [[${pyk.namaPenyakit}]]
+                    </button>
+                </h2>
+                <div
+                        th:id="'panelsStayOpen-collapse'+${status.count}"
+                        class="accordion-collapse collapse"
+                        th:aria-labelledby="'panelsStayOpen-heading'+${status.count}"
+                >
+                    <div class="accordion-body">
+                        <div class="text-center">
+                            <img th:src="'data:image/jpeg;base64,' + ${pyk.pictures}" class="img-fluid" alt="" />
+                        </div>
+                        <div class="p-3">
+                            <h4 class="mt-3">Penjelasan : </h4>
+                            <p class="mb-3" style="font-size: 16px; text-align: justify">
+                                [[${pyk.keterangan}]]
+                            </p>
+                            <h4 class="mt-3">Gejala :</h4>
+                            <ol>
+                                <li th:each="gjl : ${pyk.gejala}">
+                                    [[${gjl.namaGejala}]]
+                                </li>
+                            </ol>
+                            <h4 class="mt-3">Solusi :</h4>
+                            <p class="mb-3" style="font-size: 16px; text-align: justify">
+                                [[${pyk.solusi}]]
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+</section>
+<section th:replace="~{fragments::footer}"></section>
+<div th:replace="~{fragments::js}"></div>
+</body>
+</html>

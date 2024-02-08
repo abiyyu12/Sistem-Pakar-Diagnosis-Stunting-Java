@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th = "https://www.thymeleaf.org/">
+<head th:replace = "~{fragments::header}">
+  <body>
+<nav class="navbar navbar-expand-lg navbar-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#"
+    ><img th:src="@{/image/logo-bina-insani.png}" alt="Logo"
+    /></a>
+    <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+    >
+      <i class="fa-solid fa-list"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav ms-auto">
+        <a class="nav-link" href="#top">HOME</a>
+        <a class="nav-link" href="#about-us">ABOUT US</a>
+        <a class="nav-link" href="#stunting">STUNTING</a>
+        <a th:if="${session.username}" class="nav-link" th:href="@{/penyakit}">PENYAKIT</a>
+        <a th:if="${session.username}" class="nav-link" th:href="@{/diagnosis?page=0}">DIAGNOSIS</a>
+        <a th:unless="${session.username}" class="nav-link" th:href="@{/login}">LOGIN</a>
+        <a th:if="${session.username}" class="nav-link" th:href="@{/profile}">PROFILE</a>
+        <a th:if="${session.username}" class="nav-link" th:href="@{/logout}">LOGOUT</a>
+        <a class="nav-link" href="#social-media">CONTACT</a>
+      </div>
+    </div>
+  </div>
+</nav>
+    <section id="top">
+      <div id="banner">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6">
+              <p class="promo-title">Universitas Bina Insani</p>
+              <p>
+                Setiap langkah kecil dalam pencegahan stunting adalah investasi
+                besar untuk masa depan. Berikan cinta, perhatian, dan nutrisi
+                terbaik untuk anak-anak kita. Dengan memberikan asupan gizi yang
+                cukup, kita membuka pintu menuju pertumbuhan yang sehat,
+                kecerdasan optimal, dan impian yang tak terbatas. Bersama-sama,
+                kita dapat mengubah masa depan mereka menjadi cerah dan penuh
+                potensi.
+              </p>
+            </div>
+            <div class="col-md-6 text-center">
+              <img th:src="@{image/child.jpg}" alt="home2" class="img-fluid" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <img th:src="@{image/wave1.png}" class="buttom-img" />
+    </section>
+
+    <section id="about-us">
+      <div class="container">
+        <h1 class="title text-center">ABOUT US</h1>
+        <div class="row">
+          <div class="col-md-6 about-us">
+            <h4>Profile Universitas</h4>
+            <p style="text-align: justify">
+              Universitas Bina Insani merupakan sebuah universitas yang berada di
+              Kota Bekasi, tepatnya di Jalan Siliwangi No. 6 Rawa Panjang, Jawa
+              Barat. Universitas ini berada di bawah naungan Yayasan Kemakmuran &
+              Kesejahtetaan Anak Bangsa (YKAB).Pada 6 Juni 2000, berdiri Akademi
+              Sekretari dan Manajemen serta Akademi Akuntansi. Kedua perguruan
+              tinggi itu memiliki 3 program studi Sekretari, Manajemen
+              Administrasi dan Akuntansi.Tahun 2006, Yayasan Pendidikan Satya
+              Karsa (YPSK) menyelenggarakan pendidikan tinggi jenjang Strata satu
+              dan Diploma Tiga bidang Informatika dan Komputer dengan nama STMIK
+              BINA INSANI. Program Studi yang dikelola adalah Teknik Informatika
+              dan Sistem Informasi untuk jenjang Strata 1 serta Manajemen
+              Informasi untuk jenjang program Diploma Tiga. Pada tahun 2010 ini,
+              semua program studi Diploma Tiga telah terakreditas BAN-PT dengan
+              peringkat B (Sangat Baik).
+            </p>
+          </div>
+          <div class="col-md-6">
+            <img th:src="@{/image/gedung-bina-insani.jpg}" class="img-fluid" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="stunting">
+      <div class="container">
+        <h1 class="title text-center">STUNTING</h1>
+        <div class="row">
+          <div class="col-md-6 about-us">
+            <img th:src="@{image/stunting.jpg}" class="img-fluid" />
+          </div>
+          <div class="col-md-6">
+            <h4>Apa Itu Stunting ?</h4>
+            <p style="text-align: justify">
+              Stunting adalah kondisi ketidakcukupan gizi yang terjadi pada
+              anak-anak, biasanya pada periode pertumbuhan awal mereka, terutama
+              dalam 1.000 hari pertama kehidupan, yaitu mulai dari kehamilan
+              hingga usia dua tahun. Kondisi ini ditandai dengan pertumbuhan
+              fisik dan perkembangan kognitif yang tidak mencapai potensi
+              optimal.Stunting menjadi perhatian global karena dampaknya yang
+              luas terhadap kesehatan dan pembangunan. Upaya bersama dari
+              berbagai pihak, termasuk pemerintah, lembaga internasional, dan
+              masyarakat, diperlukan untuk mengatasi masalah serius ini dan
+              menciptakan kondisi di mana setiap anak memiliki peluang tumbuh
+              kembang optimal.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="social-media">
+      <div class="container text-center">
+        <p>FIND US ON SOCIAL MEDIA</p>
+        <div class="social-icons">
+          <a href="#"><img th:src="@{image/facebook-icon.png}" /></a>
+          <a href="#"><img th:src="@{image/instagram-icon.png}" /></a>
+          <a href="#"><img th:src="@{image/twitter-icon.png}" /></a>
+          <a href="#"><img th:src="@{image/whatsapp-icon.png}" /></a>
+        </div>
+      </div>
+    </section>
+    <section th:replace="~{fragments::footer}"></section>
+    <div th:replace="~{fragments::js}"></div>
+    <script th:inline="javascript">
+      var isLogin = [[${login}]];
+      if(isLogin == "true"){
+        swal("Selamat Datang", "Login Berhasil", "success");
+      }
+    </script>
+  </body>
+</html>
